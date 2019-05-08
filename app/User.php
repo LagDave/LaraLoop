@@ -15,13 +15,19 @@ class User extends Authenticatable
         'role_id'
     ];
 
-    public function role(){
-        return $this->belongsTo('App\Role');
-    }
+
     public function setNameAttribute($value){
         $this->attributes['name'] = strtolower(ucwords($value));
     }
     public function setEmailAttribute($value){
         $this->attributes['email'] = strtolower($value);
+    }
+
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
+    public function posts(){
+        return $this->hasMany('App\Post');
     }
 }

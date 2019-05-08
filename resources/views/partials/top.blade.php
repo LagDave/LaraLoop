@@ -23,7 +23,6 @@
 <body>
 <div id="app">
 @if(Auth::check())
-    {{--Navigation Bar--}}
     @if(Auth::user()->role->name === 'administrator')
         @include('navs.administrator_nav')
     @elseif(Auth::user()->role->name === 'author')
@@ -34,5 +33,21 @@
 @else
     @include('navs.guest_nav')
 @endif
+
+    @if(request()->session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{request()->session()->get('success')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @elseif(request()->session()->has('failed'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Failed!</strong> {{request()->session()->get('failed')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 <br>
 <div class="container">
