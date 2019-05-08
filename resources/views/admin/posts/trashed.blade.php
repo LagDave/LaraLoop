@@ -36,6 +36,7 @@
                                 <div style="background: none; border:none" class="card card-body px-0 pt-0">
 
                                     <a href="{{route('admin.posts.restore', ['post'=> $post->id])}}" class="btn btn-sm btn-success">Restore Post</a>
+                                    <a href="{{route('admin.posts.forceDelete', ['post'=> $post->id])}}" class="btn btn-sm btn-danger mt-1">Truncate Post</a>
 
 
                                 </div>

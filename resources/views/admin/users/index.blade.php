@@ -51,12 +51,20 @@
                                     <div style="background: none; border:none" class="card card-body px-0 pt-0">
 
                                         @if($user->role->name == 'author')
-                                            <button class="btn btn-sm btn-success">Promote to Admin</button>
-                                            <button class="btn mt-1 btn-sm btn-danger">Demote to Subscriber</button>
-                                            <button class="btn mt-1 btn-sm btn-danger">Delete User</button>
+                                            <a href="{{route('admin.users.promote', ['user'=>$user->id])}}" class="btn btn-sm btn-success">Promote to Admin</a>
+                                            <a href="{{route('admin.users.demote', ['user'=>$user->id])}}" class="btn mt-1 btn-sm btn-danger">Demote to Subscriber</a>
+                                            <form action="{{route('admin.users.destroy', ['user'=>$user->id])}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-sm form-control btn-danger">Delete User</button>
+                                            </form>
                                         @elseif($user->role->name == 'subscriber')
-                                            <button class="btn btn-sm btn-success">Promote to Author</button>
-                                            <button class="btn mt-1 btn-sm btn-danger">Delete User</button>
+                                            <a href="{{route('admin.users.promote', ['user'=>$user->id])}}" class="btn btn-sm btn-success">Promote to Author</a>
+                                            <form action="{{route('admin.users.destroy', ['user'=>$user->id])}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="mt-1 btn btn-sm form-control btn-danger">Delete User</button>
+                                            </form>
                                         @endif
                                     </div>
                                 </div>

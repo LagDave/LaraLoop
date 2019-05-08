@@ -38,7 +38,7 @@
                         <div class="collapse" id="user_{{$post->id}}">
                             <div style="background: none; border:none" class="card card-body px-0 pt-0">
 
-                                <button class="btn btn-sm btn-success">Edit Post</button>
+                                <a href="{{route('admin.posts.edit', ['post'=>$post->id])}}" class="btn btn-sm btn-success">Edit Post</a>
                                 <form method="POST" action="{{route('admin.posts.destroy', ['post'=>$post->id])}}">
                                     @csrf
                                     @method('DELETE')

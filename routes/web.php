@@ -19,7 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Admin Users
+/*
+ * Administrator Users : Rights
+ * */
+
+// Promote and Demote Functionality
+Route::get('/admin/users/{user}/promote', 'AdminUsersController@promote')->name('admin.users.promote');
+Route::get('/admin/users/{user}/demote', 'AdminUsersController@demote')->name('admin.users.demote');
+
+// Resource Functionalities
 Route::resource('admin/users', 'AdminUsersController')->names([
     'index' => 'admin.users.index',
     'show'=> 'admin.users.show',
@@ -29,13 +37,24 @@ Route::resource('admin/users', 'AdminUsersController')->names([
     'update'=>'admin.users.update'
 ]);
 
-// Admin Posts
+
+
+
+/*
+ * Administrator Posts : Rights
+ * */
+
+// Trashed Posts Page
 Route::get('admin/posts/trashed', 'AdminPostsController@trashed')->name('admin.posts.trashed');
 
+// Restore and ForceDelete Functionalities
 Route::get('admin/posts/{post}/restore', 'AdminPostsController@restore')->name('admin.posts.restore');
-Route::post('admin/posts/{post}/forceDelete', 'AdminPostsController@forceDelete')->name('admin.posts.forceDelete');
+Route::get('admin/posts/{post}/forceDelete', 'AdminPostsController@forceDelete')->name('admin.posts.forceDelete');
 
+// Resource Functionalities
 Route::resource('admin/posts', 'AdminPostsController')->names([
     'index'=> 'admin.posts.index',
-    'destroy'=>'admin.posts.destroy'
+    'destroy'=>'admin.posts.destroy',
+    'update'=>'admin.posts.update',
+    'edit'=>'admin.posts.edit'
 ]);
