@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('admin/users', 'AdminUsersController')->names([
+    'index' => 'admin.users.index',
+    'show'=> 'admin.users.show',
+    'create'=> 'admin.users.create',
+    'destroy'=>'admin.users.destroy',
+    'edit'=>'admin.users.edit',
+    'update'=>'admin.users.update'
+]);
