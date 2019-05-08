@@ -33,7 +33,7 @@
                                 <div class="collapse" id="user_{{$category->id}}">
                                     <div style="background: none; border:none" class="px-0 pt-0">
 
-                                        <a href="" class="w-100 btn btn-sm btn-success">Edit Category</a>
+                                        <a href="{{route('admin.categories.edit', ['category'=>$category->id])}}" class="w-100 btn btn-sm btn-success">Edit Category</a>
 
                                         <form method="POST" action="{{route('admin.categories.destroy', ['category'=>$category->id])}}">
                                             @csrf

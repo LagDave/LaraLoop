@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 
 class AdminCategoriesController extends Controller
@@ -18,6 +19,19 @@ class AdminCategoriesController extends Controller
         }
         if($category->delete()){
             return redirect('admin.categories.index')->with('success', 'The category and the posts related to it were deleted successfully');
+        }
+    }
+
+    public function edit(Category $category){
+        $posts = Post::where('category_id', $category->id)->paginate(15);
+        return view('admin.categories.edit', compact('category', 'posts'));
+    }
+    public function update(Category $category, Request $request){
+        $data = $request->validate([
+            'name'=>'required|unique:categories,name'
+        ]);
+        if($category->update($data)){
+            return redirect(route('admin.categories.index'))->with('success', 'Category updated successfully');
         }
     }
 }
