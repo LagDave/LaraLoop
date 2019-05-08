@@ -2,14 +2,14 @@
 @section('menu')
     <a href="{{route('admin.users.index')}}" class="nav-link">Users</a>
     <a href="{{route('admin.posts.index')}}" class="nav-link active">Posts</a>
-    <a href="" class="nav-link">Categories</a>
+    <a href="{{route('admin.categories.index')}}" class="nav-link">Categories</a>
     <a href="" class="nav-link">Tags</a>
     <a href="{{route('admin.posts.trashed')}}" class="nav-link">Trashed Posts</a>
 @endsection
 
 @section('content')
 
-    <h3>Posts Control Panel</h3>
+    <h4>Posts Control Panel</h4>
     <hr>
     <div class="table-responsive">
         <table style="overflow-x:scroll" class="table table-borderless w-100 table-striped table-hoverable">
@@ -17,6 +17,7 @@
                 <th class="pl-2">Id</th>
                 <th>Title</th>
                 <th>Owner</th>
+                <th>Category</th>
                 <th>Created At</th>
                 <th>Updated At</th>
                 <th class="pr-2">Actions</th>
@@ -24,14 +25,15 @@
             <tbody>
             @foreach($posts as $post)
                 <tr>
-                    <td class="pl-2">{{$post->id}}</td>
-                    <td>{{$post->title}}</td>
-                    <td>{{$post->user->name}}</td>
-                    <td>{{$post->created_at}}</td>
-                    <td>{{$post->updated_at}}</td>
-                    <td class="pr-2">
+                    <td class="pl-2 pb-0">{{$post->id}}</td>
+                    <td class="pb-0">{{$post->title}}</td>
+                    <td class="pb-0">{{$post->user->name}}</td>
+                    <td class="pb-0">{{$post->category->name}}</td>
+                    <td class="pb-0">{{$post->created_at}}</td>
+                    <td class="pb-0">{{$post->updated_at}}</td>
+                    <td class="pr-2 pb-0">
                         <p>
-                            <button class="w-100 mt-3 btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#user_{{$post->id}}" aria-expanded="false" aria-controls="collapseExample">
+                            <button class="w-100 btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#user_{{$post->id}}" aria-expanded="false" aria-controls="collapseExample">
                                 ACTIONS
                             </button>
                         </p>
