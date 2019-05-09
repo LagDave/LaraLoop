@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             LaraCMS
@@ -11,8 +11,8 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="{{route('admin.users.index')}}" class="nav-link">
-                        Users
+                    <a href="{{route('admin.control')}}" class="nav-link">
+                        Control Panel
                     </a>
                 </li>
                 <li class="nav-item">

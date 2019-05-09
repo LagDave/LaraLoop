@@ -17,6 +17,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('/admin/control_panel', function(){
+   return redirect(route('admin.users.index'));
+})->name('admin.control');
+
 /*
  * Administrator Users : Rights
  * */

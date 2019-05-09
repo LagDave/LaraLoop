@@ -11,50 +11,35 @@
 
     <h4>Posts Control Panel</h4>
     <hr>
-    <div class="table-responsive">
-        <table style="overflow-x:scroll" class="table table-borderless w-100 table-striped table-hoverable">
-            <thead>
-                <th class="pl-2">Id</th>
-                <th>Title</th>
-                <th>Owner</th>
-                <th>Category</th>
-                <th>Created At</th>
-                <th>Updated At</th>
-                <th class="pr-2">Actions</th>
-            </thead>
-            <tbody>
-            @foreach($posts as $post)
-                <tr>
-                    <td class="pl-2 pb-0">{{$post->id}}</td>
-                    <td class="pb-0">{{$post->title}}</td>
-                    <td class="pb-0">{{$post->user->name}}</td>
-                    <td class="pb-0">{{$post->category->name}}</td>
-                    <td class="pb-0">{{$post->created_at}}</td>
-                    <td class="pb-0">{{$post->updated_at}}</td>
-                    <td class="pr-2 pb-0">
-                        <p>
-                            <button class="w-100 btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#user_{{$post->id}}" aria-expanded="false" aria-controls="collapseExample">
-                                ACTIONS
-                            </button>
-                        </p>
-                        <div class="collapse" id="user_{{$post->id}}">
-                            <div style="background: none; border:none" class="card card-body px-0 pt-0">
-
-                                <a href="{{route('admin.posts.edit', ['post'=>$post->id])}}" class="btn btn-sm btn-success">Edit Post</a>
-                                <form method="POST" action="{{route('admin.posts.destroy', ['post'=>$post->id])}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn w-100 btn-sm btn-danger mt-1">Trash Post</button>
-                                </form>
 
 
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+
+    <div class="accordion" id="accordionExample">
+        @foreach($posts as $post)
+            <div class="card">
+                <div data-toggle="collapse" data-target="#post_{{$post->id}}" class="card-header hovered" id="headingOne">
+                    <p class="text-primary">
+                        {{$post->title}}
+                        <small class="text-muted"><b>{{$post->user->name }}:</b> ( {{$post->created_at}} )</small>
+                    </p>
+                </div>
+
+                <div id="post_{{$post->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p>Category: <b>{{$post->category->name}}</b></p>
+                        <p>Created at: <b>{{date('F d, Y', strtotime($post->created_at))}}</b></p>
+                        <p>Updated at: <b>{{date('F d, Y', strtotime($post->updated_at))}}</b></p>
+                        <hr>
+                        <a href="{{route('admin.posts.edit', ['post'=>$post->id])}}" class="btn btn-sm btn-success">Edit Post</a>
+                        <form method="POST" action="{{route('admin.posts.destroy', ['post'=>$post->id])}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger mt-1">Trash Post</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
     <hr>
     {{$posts->links()}}
