@@ -42,7 +42,7 @@ class AdminPostsController extends Controller
     }
 
     public function trashed(){
-        $posts = Post::onlyTrashed()->get();
+        $posts = Post::onlyTrashed()->paginate(15);
         return view('admin.posts.trashed', compact('posts'));
     }
     public function restore($id){

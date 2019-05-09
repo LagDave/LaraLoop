@@ -1,11 +1,5 @@
 @extends('admin.index')
-@section('menu')
-    <a href="{{route('admin.users.index')}}" class="nav-link">Users</a>
-    <a href="{{route('admin.posts.index')}}" class="nav-link">Posts</a>
-    <a href="{{route('admin.categories.index')}}" class="nav-link active">Categories</a>
-    <a href="" class="nav-link">Tags</a>
-    <a href="{{route('admin.posts.trashed')}}" class="nav-link">Trashed Posts</a>
-@endsection
+
 @section('content')
     <h4>Update Category</h4>
     <hr>

@@ -55,3 +55,10 @@ Route::get('/admin/categories', 'AdminCategoriesController@index')->name('admin.
 Route::delete('/admin/categories/{category}/destroy', 'AdminCategoriesController@destroy')->name('admin.categories.destroy');
 Route::get('/admin/categories/{category}/edit', 'AdminCategoriesController@edit')->name('admin.categories.edit');
 Route::patch('/admin/categories/{category}/update', 'AdminCategoriesController@update')->name('admin.categories.update');
+
+
+
+/*
+ * Administrator Tags : Rights
+ * */
+Route::get('/admin/tags', 'AdminTagsController@index')->name('admin.tags.index');
