@@ -13,12 +13,6 @@ class AdminPostsController extends Controller
         $posts = Post::where('id', '>', '0')->paginate(15);
         return view('admin.posts.index', compact('posts'));
     }
-
-    public function create()
-    {
-        //
-    }
-
     public function edit(Post $post)
     {
         return view('admin.posts.edit', compact('post'));
@@ -30,14 +24,14 @@ class AdminPostsController extends Controller
             'body'=>'required'
         ]);
         if($post->update($data)){
-            return redirect(route('admin.posts.index'))->with('success', 'Post edited successfully');
+            return back()->with('success', 'Post edited successfully');
         }
     }
     public function destroy(Post $post)
     {
         $post_title = $post->title;
         if($post->delete()){
-            return redirect(route('admin.posts.index'))->with('success', 'Post - "'.$post_title.'" - successfully trashed');
+            return back()->with('success', 'Post - "'.$post_title.'" - successfully trashed');
         }
     }
 
@@ -51,7 +45,7 @@ class AdminPostsController extends Controller
                 ->where('id', $id)
                 ->restore()
         ){
-            return redirect(route('admin.posts.trashed'))->with('success', 'Post restored successfully');
+            return back()->with('success', 'Post restored successfully');
         }
     }
     public function forceDelete($id){
@@ -60,7 +54,7 @@ class AdminPostsController extends Controller
             ->where('id', $id)
             ->forceDelete()
         ){
-            return redirect(route('admin.posts.trashed'))->with('success', 'Post deleted permanently');
+            return back()->with('success', 'Post deleted permanently');
         }
     }
 }

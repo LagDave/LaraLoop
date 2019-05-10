@@ -21,8 +21,8 @@
                             <p>Updated at: <b>{{date('F d, Y', strtotime($post->updated_at))}}</b></p>
                             <hr>
                             <div class="btn-group">
-                                <a href="{{route('admin.posts.restore', ['post'=> $post->id])}}" class="btn btn-sm btn-success">Restore Post</a>
-                                <a href="{{route('admin.posts.forceDelete', ['post'=> $post->id])}}" class="btn btn-sm btn-danger">Truncate Post</a>
+                                <a href="{{route('admin.posts.restore', ['post'=> $post->id])}}" class="btn btn-success"><i class="fas fa-trash-restore"></i></a>
+                                <a href="{{route('admin.posts.forceDelete', ['post'=> $post->id])}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                             </div>
                         </div>
                     </div>

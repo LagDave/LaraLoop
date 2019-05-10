@@ -2,11 +2,28 @@
 
 @section('content')
     <div class="card card-body shadow b-radius-10 b-none">
-        <h4><span class="text-primary"><i class="fas fa-file"></i></span><b> Posts Control Panel</b></h4>
+        <h4><span class="text-primary"><i class="fas fa-pen-alt"></i></span><b> Edit Tag</b></h4>
         <br>
+        <form action="{{route('admin.tags.update', ['tag'=>$tag->id])}}" method="POST" class="form">
+            @csrf
+            @method('PATCH')
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" value="{{old('name')?? $tag->name}}" name='name' class="form-control">
+                @if($errors->has('name'))
+                    <small class="text-danger"><b><i class="fas fa-exclamation"></i> {{$errors->first('name')}}</b></small>
+                @endif
+            </div>
 
+            <button class="btn btn-primary form-control">Update</button>
+        </form>
+    </div>
 
+    <br>
 
+    <div class="card card-body shadow b-radius-10 b-none">
+        <h4><span class="text-primary"><i class="fas fa-file"></i></span><b> Posts with this Tag</b></h4>
+        <br>
         <div class="accordion" id="accordionExample">
             @foreach($posts as $post)
                 <div class="card">
@@ -37,9 +54,6 @@
             @endforeach
         </div>
     </div>
-    <br>
-    <div class="card b-none card-body shadow">
-        {{$posts->links()}}
-    </div>
+
 
 @endsection

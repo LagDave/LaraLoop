@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-    <div class="card card-body shadow b-radius-10 b-none">
+    <div class="card category-card card-body shadow b-radius-10 b-none">
         <h4><span class="text-primary"><i class="fas fa-stream"></i></span><b> Categories Control Panel</b></h4>
         <br>
             <div class="table-responsive">
@@ -19,24 +19,14 @@
                                 <td>{{$category->name}}</td>
                                 <td>{{sizeof($category->posts)}}</td>
                                 <td>
-                                    <p>
-                                        <button class="w-100 btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#user_{{$category->id}}" aria-expanded="false" aria-controls="collapseExample">
-                                            ACTIONS
-                                        </button>
-                                    </p>
-                                    <div class="collapse" id="user_{{$category->id}}">
-                                        <div style="background: none; border:none" class="px-0 pt-0">
+                                    <div class="button-group">
+                                        <a href="{{route('admin.categories.edit', ['category'=>$category->id])}}" class="btn btn-sm btn-success"><i class="fas fa-pen-alt"></i></a>
 
-                                            <a href="{{route('admin.categories.edit', ['category'=>$category->id])}}" class="w-100 btn btn-sm btn-success">Edit Category</a>
-
-                                            <form method="POST" action="{{route('admin.categories.destroy', ['category'=>$category->id])}}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn w-100 btn-sm btn-danger mt-1">Delete Category</button>
-                                            </form>
-
-
-                                        </div>
+                                        <form method="POST" action="{{route('admin.categories.destroy', ['category'=>$category->id])}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="ml-1 btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
