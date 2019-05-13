@@ -26,6 +26,9 @@ Route::get('admin/control_panel', function(){
  * Administrator Users : Rights
  * */
 
+Route::get('admin/users/create', 'AdminUsersController@create')->name('admin.users.create');
+Route::post('admin/users/store', 'AdminUsersController@store')->name('admin.users.store');
+
 // Promote and Demote Functionality
 Route::get('admin/users/{user}/promote', 'AdminUsersController@promote')->name('admin.users.promote');
 Route::get('admin/users/{user}/demote', 'AdminUsersController@demote')->name('admin.users.demote');
@@ -47,6 +50,8 @@ Route::get('admin/posts', 'AdminPostsController@index')->name('admin.posts.index
 Route::get('admin/posts/{post}/edit', 'AdminPostsController@edit')->name('admin.posts.edit');
 Route::patch('admin/posts/{post}/update', 'AdminPostsController@update')->name('admin.posts.update');
 Route::delete('admin/posts/{post}/destroy', 'AdminPostsController@destroy')->name('admin.posts.destroy');
+
+Route::get('admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
 
 /*
  * Administrator Categories : Rights

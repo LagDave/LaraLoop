@@ -15,10 +15,23 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="card b-none shadow">
+            <div class="card-header"><span class="text-primary"><i class="fas fa-plus-square"></i></span><b> Quick Add</b></div>
+            <div class="card-body">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a href="{{route('admin.users.create')}}" class="nav-link"><span class="text-primary"><i class="fas fa-users"></i></span> Create User</a>
+                    <a href="{{route('admin.posts.create')}}" class="nav-link"><span class="text-primary"><i class="far fa-file"></i></span> Create Post</a>
+                    <a href="{{route('admin.categories.index')}}" class="nav-link"><span class="text-primary"><i class="fas fa-stream"></i></span> Create Category</a>
+                    <a href="{{route('admin.tags.index')}}" class="nav-link"><span class="text-primary"><i class="fas fa-tags"></i></span> Create Tag</a>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-lg-9">
         @yield('content')
     </div>
 </div>
 
+@yield('scripts')
 @include('partials.bottom')

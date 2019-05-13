@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -56,5 +57,15 @@ class AdminPostsController extends Controller
         ){
             return back()->with('success', 'Post deleted permanently');
         }
+    }
+
+    public function create(){
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
+    }
+    public function store(Request $request){
+
+
     }
 }

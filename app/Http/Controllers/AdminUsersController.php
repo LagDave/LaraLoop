@@ -15,7 +15,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        $users = User::where('id','>' ,'0')->paginate(15);
+        $users = User::where('id','>' ,'0')->orderBy('id','desc')->paginate(15);
         return view('admin.users.index', compact('users'));
     }
 
@@ -58,5 +58,21 @@ class AdminUsersController extends Controller
             }
         }
         return back()->with('failed', 'This user cannot be demoted');
+    }
+
+    public function create(){
+        return view('admin.users.create');
+    }
+    public function store(Request $request){
+        $data = $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required',
+            'confirm_password'=>'required|same:password|min:8',
+            'role_id'=>'required'
+        ]);
+        if(User::create($data)){
+            return back()->with('success', 'User Added Successfully');
+        }
     }
 }

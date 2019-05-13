@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{asset('js/base.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,11 +21,22 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/admin-cpanel.css')}}">
+
+    {{-- Base stylings for library use are in here --}}
     <link rel="stylesheet" href="{{asset('css/base.css')}}">
+
+    {{-- Admin CPanel specific stylings are in here --}}
+    <link rel="stylesheet" href="{{asset('css/admin-cpanel.css')}}">
+
+    {{-- Tagsinput --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
 </head>
 <body>
 <div id="app">
+
+
+{{-- This 'if' codeblock will determine what navigation bar will be displayed --}}
 @if(Auth::check())
     @if(Auth::user()->role->name === 'administrator')
         @include('navs.administrator_nav')
@@ -37,20 +49,21 @@
     @include('navs.guest_nav')
 @endif
 
-    @if(request()->session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> {{request()->session()->get('success')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @elseif(request()->session()->has('failed'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Failed!</strong> {{request()->session()->get('failed')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+{{-- This 'if' code block will show flash session messages both for succeeded or failed --}}
+@if(request()->session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> {{request()->session()->get('success')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@elseif(request()->session()->has('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Failed!</strong> {{request()->session()->get('failed')}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <br>
 <div class="container">

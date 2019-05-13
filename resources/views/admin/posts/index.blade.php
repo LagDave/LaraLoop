@@ -23,6 +23,12 @@
                             <p>Created at: <b>{{date('F d, Y', strtotime($post->created_at))}}</b></p>
                             <p>Updated at: <b>{{date('F d, Y', strtotime($post->updated_at))}}</b></p>
                             <hr>
+                            @if(sizeof($post->tags) > 0)
+                                @foreach($post->tags as $tag)
+                                    <a class="mr-1 c-pointer pad-small shadowed b-radius-1000"><small style="line-height: 50px" class="text-primary"><i class="fas fa-tag mr-1"></i>{{$tag->name}}</small></a>
+                                @endforeach
+                                <br><br>
+                            @endif
                             <div class="btn-group">
                                 <a href="{{route('admin.posts.edit', ['post'=>$post->id])}}" class="btn btn-success"><i class="fas fa-pen-alt"></i></a>
                                 <form method="POST" action="{{route('admin.posts.destroy', ['post'=>$post->id])}}">

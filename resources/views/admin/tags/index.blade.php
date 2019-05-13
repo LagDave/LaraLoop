@@ -7,7 +7,7 @@
             @foreach($tags as $tag)
                 <div class="col-md-3">
                     <div data-toggle="tooltip" data-placement="top" title="#{{$tag->name}}" class="card tag-card b-none pad-small c-pointer shadowed b-radius-1000 card-body">
-                        <p class="text-center mb-0 text-primary tag-name">#<b>{{$tag->name}}</b></p>
+                        <small class="text-center mb-0 text-primary tag-name"><i class="fas fa-tag"></i><b> {{$tag->name}}</b></small>
                         <div class="button-group">
                             <a href="{{route('admin.tags.edit', ['tag'=>$tag->id])}}" class="text-success"><i class="fas fa-pen-alt"></i></a>
                             <form class="tag-delete-form" action="{{route('admin.tags.destroy', ['tag'=>$tag->id])}}" method="POST">
@@ -22,17 +22,11 @@
             @endforeach
         </div>
     </div>
+@endsection
 
-    {{-- SCRIPTS --}}
-    <script>
 
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        });
-
-        let tag_names = document.querySelectorAll('.tag-name');
-        tag_names.forEach((tag_name)=>{
-            tag_name.innerText = tag_name.innerText.slice(0, 8)+' ...';
-        })
-    </script>
+{{-- Were still not using vue or
+ compiled assets at the moment--}}
+@section('scripts')
+    <script src="{{asset('js/admin_cpanel/tagname_stripper.js')}}"></script>
 @endsection
