@@ -18,7 +18,7 @@ class AdminCategoriesController extends Controller
             $post->forceDelete();
         }
         if($category->delete()){
-            return redirect('admin.categories.index')->with('success', 'The category and the posts related to it were deleted successfully');
+            return redirect(route('admin.categories.index'))->with('success', 'The category and the posts related to it were deleted successfully');
         }
     }
 
@@ -32,6 +32,18 @@ class AdminCategoriesController extends Controller
         ]);
         if($category->update($data)){
             return redirect(route('admin.categories.index'))->with('success', 'Category updated successfully');
+        }
+    }
+
+    public function create(){
+        return view('admin.categories.create');
+    }
+    public function store(Request $request){
+        $data = $request->validate([
+            'name'=>'required'
+        ]);
+        if(Category::create($data)){
+            return redirect(route('admin.categories.create'))->with('success', 'Category created successfully');
         }
     }
 }

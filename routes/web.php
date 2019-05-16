@@ -60,7 +60,8 @@ Route::get('admin/categories', 'AdminCategoriesController@index')->name('admin.c
 Route::delete('admin/categories/{category}/destroy', 'AdminCategoriesController@destroy')->name('admin.categories.destroy');
 Route::get('admin/categories/{category}/edit', 'AdminCategoriesController@edit')->name('admin.categories.edit');
 Route::patch('admin/categories/{category}/update', 'AdminCategoriesController@update')->name('admin.categories.update');
-
+Route::get('admin/categories/create', 'AdminCategoriesController@create')->name('admin.categories.create');
+Route::post('admin/categories/store', 'AdminCategoriesController@store')->name('admin.categories.store');
 
 
 /*
@@ -70,3 +71,5 @@ Route::get('admin/tags', 'AdminTagsController@index')->name('admin.tags.index');
 Route::get('admin/tags/{tag}/edit', 'AdminTagsController@edit')->name('admin.tags.edit');
 Route::patch('admin/tags/{tag}/update', 'AdminTagsController@update')->name('admin.tags.update');
 Route::delete('admin/tags/{tag}/destroy', 'AdminTagsController@destroy')->name('admin.tags.destroy');
+Route::get('admin/tags/create', 'AdminTagsController@create')->name('admin.tags.create');
+Route::post('admin/tags/store', 'AdminTagsController@store')->name('admin.tags.store');

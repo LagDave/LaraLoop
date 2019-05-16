@@ -28,9 +28,6 @@
     {{-- Admin CPanel specific stylings are in here --}}
     <link rel="stylesheet" href="{{asset('css/admin-cpanel.css')}}">
 
-    {{-- Tagsinput --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
 </head>
 <body>
 <div id="app">

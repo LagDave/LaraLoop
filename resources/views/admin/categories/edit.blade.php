@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card card-body shadow b-radius-10 b-none">
-        <h4><span class="text-primary"><i class="fas fa-pen-alt"></i></span><b> </b></h4>
+        <h4><span class="text-primary"><i class="fas fa-pen-alt"></i></span><b> Edit <span class="text-primary">{{$category->name}}</span> category</b></h4>
         <br>
         <form action="{{route('admin.categories.update', ['category'=>$category->id])}}" method="POST" class="form">
             @csrf
@@ -22,7 +22,7 @@
     <br>
 
     <div class="card card-body shadow b-radius-10 b-none">
-        <h4><span class="text-primary"><i class="fas fa-file"></i></span><b> Posts Control Panel</b></h4>
+        <h4><span class="text-primary"><i class="far fa-file"></i></span><b> Related Posts</b></h4>
         <br>
         <div class="accordion" id="accordionExample">
             @foreach($posts as $post)

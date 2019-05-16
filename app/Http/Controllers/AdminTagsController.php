@@ -32,4 +32,17 @@ class AdminTagsController extends Controller
         }
     }
 
+    public function create(){
+        return view('admin.tags.create');
+    }
+    public function store(Request $request){
+        $data = $request->validate([
+            'name'=>'required'
+        ]);
+        if(Tag::create($data)){
+            return redirect(route('admin.tags.create'))->with('success', 'Tag created successfully');
+        }
+    }
+
+
 }

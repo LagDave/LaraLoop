@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card card-body shadow b-radius-10 b-none">
-        <h4><span class="text-primary"><i class="fas fa-file"></i></span><b> Posts Control Panel</b></h4>
+        <h4><span class="text-primary"><i class="far fa-file"></i></span><b> Posts Control Panel</b></h4>
         <br>
 
 

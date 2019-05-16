@@ -1,5 +1,7 @@
 @extends('admin.index')
 @section('content')
+
+
     <div class="card card-body shadow b-radius-10 b-none">
         <h4><span class="text-primary"><i class="fas fa-users"></i></span><b> Quick Add Post</b></h4>
         <br>
@@ -24,10 +26,22 @@
             </div>
             <div class="form-group">
                 <label>Tags</label>
-                <input name='tags' type="text" class="form-control">
+                <input onkeyup="check()" id="tags" name='tags' type="text" class="form-control">
             </div>
+
+            <div class="tags-container">
+
+            </div>
+
         </form>
 
     </div>
+
+    <script>
+
+        function check(){
+
+        }
+    </script>
 
 @endsection
