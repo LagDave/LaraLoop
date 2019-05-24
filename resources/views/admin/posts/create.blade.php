@@ -1,15 +1,19 @@
 @extends('admin.index')
 @section('content')
 
-
     <div class="card card-body shadow b-radius-10 b-none">
         <h4><span class="text-primary"><i class="fas fa-users"></i></span><b> Quick Add Post</b></h4>
         <br>
 
-        <form action="" class="form">
+        <form method="POST" action="{{route('admin.posts.store')}}" class="form">
+            @csrf
             <div class="form-group">
                 <label>Title</label>
                 <input type="text" name="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input required type="text" name="image" class="form-control">
             </div>
             <div class="form-group">
                 <label>Body</label>
@@ -17,31 +21,44 @@
             </div>
             <div class="form-group">
                 <label>Category</label>
-                <select name="category" class="custom-select">
+                <select name="category_id" class="custom-select">
                     <option selected>Select one category</option>
                     @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
             </div>
+
             <div class="form-group">
                 <label>Tags</label>
-                <input onkeyup="check()" id="tags" name='tags' type="text" class="form-control">
             </div>
 
-            <div class="tags-container">
+            <div class="row">
+                <div class="col-lg-6">
 
+                    <input placeholder="Search for tags..." onkeyup="check()" id="tags" type="text" class="form-control">
+                    <br>
+                    <div style="min-height:150px;" class="tags-container card card-body b-none shadow">
+                        <div class="row">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label><b>Included Tags</b></label>
+                        <br>
+                        <div style="min-height:180px;" class='card card-body b-none shadow' id="included-tags">
+                            <div class="row"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
+            <br>
+            <button class="btn btn-primary form-control">Create Post</button>
         </form>
 
     </div>
 
-    <script>
-
-        function check(){
-
-        }
-    </script>
-
+    <script src="{{asset('js/post_tagging.js')}}"></script>
 @endsection

@@ -6,10 +6,10 @@ use App\Category;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPostsController extends Controller
 {
-
     public function index()
     {
         $posts = Post::where('id', '>', '0')->paginate(15);
@@ -17,15 +17,20 @@ class AdminPostsController extends Controller
     }
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
     public function update(Request $request, Post $post)
     {
         $data = $request->validate([
-            'title'=>'required|max:255',
-            'body'=>'required'
+            'title'=>'required',
+            'body'=>'required',
+            'image'=> 'required',
+            'category_id'=>'required',
+
         ]);
         if($post->update($data)){
+            $post->tags()->sync($request->tags);
             return back()->with('success', 'Post edited successfully');
         }
     }
@@ -67,6 +72,20 @@ class AdminPostsController extends Controller
     }
     public function store(Request $request){
 
+        $data = $request->validate([
+            'title'=>'required',
+            'body'=>'required',
+            'image'=> 'required',
+            'category_id'=>'required'
+        ]);
 
+        $data['user_id'] = Auth::id();
+        $post = Post::create($data);
+
+        foreach($request->tags as $tag){
+            $post->tags()->attach($tag);
+        }
+
+        return redirect(route('admin.posts.create'))->with('success', 'Post created Successfully');
     }
 }

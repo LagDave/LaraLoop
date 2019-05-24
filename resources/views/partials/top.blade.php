@@ -24,8 +24,7 @@
 
     {{-- Base stylings for library use are in here --}}
     <link rel="stylesheet" href="{{asset('css/base.css')}}">
-
-    {{-- Admin CPanel specific stylings are in here --}}
+    {{-- Admin Cpanel Stylesheets --}}
     <link rel="stylesheet" href="{{asset('css/admin-cpanel.css')}}">
 
 </head>

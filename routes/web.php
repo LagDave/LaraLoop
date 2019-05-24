@@ -52,7 +52,7 @@ Route::patch('admin/posts/{post}/update', 'AdminPostsController@update')->name('
 Route::delete('admin/posts/{post}/destroy', 'AdminPostsController@destroy')->name('admin.posts.destroy');
 
 Route::get('admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
-
+Route::post('admin/posts/store', 'AdminPostsController@store')->name('admin.posts.store');
 /*
  * Administrator Categories : Rights
  * */
@@ -73,3 +73,6 @@ Route::patch('admin/tags/{tag}/update', 'AdminTagsController@update')->name('adm
 Route::delete('admin/tags/{tag}/destroy', 'AdminTagsController@destroy')->name('admin.tags.destroy');
 Route::get('admin/tags/create', 'AdminTagsController@create')->name('admin.tags.create');
 Route::post('admin/tags/store', 'AdminTagsController@store')->name('admin.tags.store');
+
+Route::get('admin/tags/return/key/{key}', 'AdminTagsController@returnKey')->name('admin.tags.return.all');
+Route::get('admin/tags/return/post/{post}', 'AdminTagsController@returnPostTags')->name('admin.tags.return.postTags');

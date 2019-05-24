@@ -45,4 +45,17 @@ class AdminTagsController extends Controller
     }
 
 
+//    Ajax API methods
+    public function returnKey($key =''){
+        $tags = Tag::where('name', 'like', '%'.strtolower($key).'%')->get();
+        if(sizeof($tags)>0){
+            return $tags;
+        }else{
+            return '';
+        }
+    }
+
+    public function returnPostTags(Post $post){
+        return $post->tags;
+    }
 }
