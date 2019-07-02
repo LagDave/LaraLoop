@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url('/home') }}">
             <i class="fab fa-laravel"></i> LaraLoop
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -11,12 +11,12 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="{{route('admin.control')}}" class="nav-link">
+                    <a href="{{route('admin.users.index')}}" class="nav-link">
                         Control Panel
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Create Post</a>
+                    <a href="{{route('posts.create')}}" class="nav-link">Create Post</a>
                 </li>
             </ul>
 

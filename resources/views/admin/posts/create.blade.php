@@ -1,6 +1,8 @@
 @extends('admin.index')
 @section('content')
 
+
+
     <div class="card card-body shadow b-radius-10 b-none">
         <h4><span class="text-primary"><i class="fas fa-users"></i></span><b> Quick Add Post</b></h4>
         <br>
@@ -17,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label>Body</label>
-                <textarea name="body" rows="5" class="form-control"></textarea>
+                <textarea name="body" rows="5" class="form-control body"></textarea>
             </div>
             <div class="form-group">
                 <label>Category</label>

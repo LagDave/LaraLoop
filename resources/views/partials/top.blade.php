@@ -27,8 +27,9 @@
     {{-- Admin Cpanel Stylesheets --}}
     <link rel="stylesheet" href="{{asset('css/admin-cpanel.css')}}">
 
-</head>
-<body>
+    {{-- Font Families --}}
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"><body>
 <div id="app">
 
 
@@ -62,4 +63,4 @@
     </div>
 @endif
 <br>
-<div class="container">
+<div class="container-fluid">

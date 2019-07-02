@@ -29,6 +29,37 @@ a:hover{
 .pad-small{
     padding:10px;
 }
-.c-pointer{
+.c-pointer {
     cursor: pointer;
+}
+
+
+
+/* Text  */
+.text-crimson{
+    font-family: 'Crimson Text';
+}
+.text-montserrat{
+    font-family: "Montserrat";
+}
+.text-primary{
+    font-family: "Montserrat";
+}
+
+.text-grey{
+    color:#454545;
+}
+.pre-wrap{
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Footer */
+
+footer{
+    background:#555;
 }

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
+use App\Post;
+use App\User;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::orderBy('id', 'asc')->get();
+        $tags = Tag::orderBy('id', 'asc')->get();
+        $posts = Post::orderBy('id', 'desc')->get();
+        return view('home',compact('user_recent_posts', 'categories', 'tags', 'posts'));
     }
 }
