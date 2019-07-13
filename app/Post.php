@@ -26,6 +26,9 @@ class Post extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag');
     }
+    public function comments(){
+        return $this->hasMany("App\Comment", 'post_id');
+    }
 
     public function getCreatedAtAttribute($value){
         return $this->attributes['created_at'] = Carbon::parse($value)->diffForHumans();

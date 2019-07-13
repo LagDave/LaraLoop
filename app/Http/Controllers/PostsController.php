@@ -16,6 +16,7 @@ class PostsController extends Controller
 //    CRUD Methods
     public function show(Post $post){
         $tags = $post->tags;
+        
 
         $data = compact('post', 'tags');
         return view('users.posts.show', $data);

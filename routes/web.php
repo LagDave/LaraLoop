@@ -77,3 +77,8 @@ Route::get('admin/tags/return/post/{post}', 'AdminTagsController@returnPostTags'
 Route::get('posts/create', 'PostsController@create')->name('posts.create')->middleware('author_only');
 Route::post('posts/store', 'PostsController@store')->name('posts.store')->middleware('author_only');
 Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
+
+// User Comment Routes
+Route::post('posts/{post}/comments/store', 'CommentsController@store')->name('comments.store');
+Route::delete('post/{post}/comments/{comment}/delete', 'CommentsController@destroy')->name('comments.destroy');
+Route::patch('post/{post}/comments/{comment}/update', 'CommentsController@update')->name('comments.update');
