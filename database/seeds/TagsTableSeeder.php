@@ -11,6 +11,10 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Tag', 20)->create();
+        DB::table('tags')->insert(['name'=>'python']);
+        DB::table('tags')->insert(['name'=>'java']);
+        DB::table('tags')->insert(['name'=>'html']);
+        DB::table('tags')->insert(['name'=>'php']);
+        DB::table('tags')->insert(['name'=>'javascript']);
     }
 }

@@ -17,6 +17,10 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                <form action='{{route('posts.results')}}' method='GET' class="form-inline my-2 my-lg-0">
+                    <input name='query' class="form-control mr-sm-2 form-control-sm" type="search" placeholder="Search for posts">
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                </form>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

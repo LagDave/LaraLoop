@@ -1,0 +1,1 @@
+{{$posts_with_names}}

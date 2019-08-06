@@ -4,7 +4,7 @@
 
 <div class="card-body">
     @foreach($categories as $category)
-        <a href="">{{$category->name}}</a> |
+    <a href="{{route('posts.categoryPosts', ['category' => $category->id, 'categoryname'=>$category->name])}}">{{$category->name}}</a> |
     @endforeach
 </div>
 

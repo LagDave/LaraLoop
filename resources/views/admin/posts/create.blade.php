@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label>Category</label>
-                <select name="category_id" class="custom-select">
+                <select required name="category_id" class="custom-select">
                     <option selected>Select one category</option>
                     @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-lg-6">
 
-                    <input placeholder="Search for tags..." onkeyup="check()" id="tags" type="text" class="form-control">
+                    <input placeholder="Search for tags..." onkeyup="check()" id="tags" type="text" class="tag-input form-control">
                     <br>
                     <div style="min-height:150px;" class="tags-container card card-body b-none shadow">
                         <div class="row">

@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/test', 'TestController@home')->name('test');
+Route::get('/', 'HomeController@index');
 Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');
 
@@ -74,9 +73,14 @@ Route::get('admin/tags/return/post/{post}', 'AdminTagsController@returnPostTags'
 
 
 // User Post Routes
+Route::get('/posts/search', 'PostsController@results')->name('posts.results');
 Route::get('posts/create', 'PostsController@create')->name('posts.create')->middleware('author_only');
 Route::post('posts/store', 'PostsController@store')->name('posts.store')->middleware('author_only');
 Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
+
+
+Route::get('/posts/tag/{tag}/{tagname}', 'PostsController@tagPosts')->name('posts.tagPosts');
+Route::get('/posts/category/{category}/{categoryname}', 'PostsController@categoryPosts')->name('posts.categoryPosts');
 
 // User Comment Routes
 Route::post('posts/{post}/comments/store', 'CommentsController@store')->name('comments.store');

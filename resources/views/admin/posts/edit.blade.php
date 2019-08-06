@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-lg-6">
 
-                    <input placeholder="Search for tags..." onkeyup="check()" id="tags" type="text" class="form-control">
+                    <input placeholder="Search for tags..." onkeyup="check()" id="tags" type="text" class="tag-input form-control">
                     <br>
                     <div style="min-height:150px;" class="tags-container card card-body b-none shadow">
                         <div class="row">

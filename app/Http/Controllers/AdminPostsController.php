@@ -21,7 +21,7 @@ class AdminPostsController extends Controller
         return view('admin.posts.edit', compact('post', 'categories'));
     }
     public function update(Request $request, Post $post)
-    {
+    {   
         $data = $request->validate([
             'title'=>'required',
             'body'=>'required',
@@ -29,10 +29,39 @@ class AdminPostsController extends Controller
             'category_id'=>'required',
 
         ]);
-        if($post->update($data)){
-            $post->tags()->sync($request->tags);
-            return back()->with('success', 'Post edited successfully');
+        
+        $new_tags_ids = [];
+        $existing_tags_ids = [];
+
+        if(isset($request->all()['tags']) && sizeof($request->all()['tags']) != 0 ){
+            foreach($request->all()['tags'] as $tag){
+                $tag = explode(':', $tag);
+                $probable_match_tag = Tag::where(['name'=>$tag[1]])->get();
+                if(sizeof($probable_match_tag) > 0){
+                    array_push($existing_tags_ids, $probable_match_tag[0]->id);
+                }else{
+                    if($tag[0] < 0){
+                        $new_tag = Tag::create(['name'=>$tag[1]]);
+                        array_push($new_tags_ids, $new_tag->id);
+                    }else{
+                        array_push($existing_tags_ids, $tag[0]);
+                    }
+                }
+            }
         }
+        
+
+        if(isset($request->all()['tags']) && sizeof($request->all()['tags']) != 0 ){
+            $merged_tags = array_merge($existing_tags_ids, $new_tags_ids);
+            $post->tags()->sync($merged_tags);
+
+        }else{
+            $post->tags()->detach();
+        }
+
+
+
+        return back()->with('success', 'Post edited successfully');
     }
     public function destroy(Post $post)
     {
@@ -72,6 +101,22 @@ class AdminPostsController extends Controller
     }
     public function store(Request $request){
 
+        $new_tags_ids = [];
+        $existing_tags_ids = [];
+        foreach($request->all()['tags'] as $tag){
+            $tag = explode(':', $tag);
+            $probable_match_tag = Tag::where(['name'=>$tag[1]])->get();
+            if(sizeof($probable_match_tag) > 0){
+                array_push($existing_tags_ids, $probable_match_tag[0]->id);
+            }else{
+                if($tag[0] < 0){
+                    $new_tag = Tag::create(['name'=>$tag[1]]);
+                    array_push($new_tags_ids, $new_tag->id);
+                }else{
+                    array_push($existing_tags_ids, $tag[0]);
+                }
+            }
+        }
         $data = $request->validate([
             'title'=>'required',
             'body'=>'required',
@@ -82,7 +127,10 @@ class AdminPostsController extends Controller
         $data['user_id'] = Auth::id();
         $post = Post::create($data);
 
-        foreach($request->tags as $tag){
+        foreach($existing_tags_ids as $tag){
+            $post->tags()->attach($tag);
+        }
+        foreach($new_tags_ids as $tag){
             $post->tags()->attach($tag);
         }
 

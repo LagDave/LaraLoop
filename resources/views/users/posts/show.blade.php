@@ -12,7 +12,7 @@
                 <p class="text-center mt-3">
                     <small class=" text-grey text-montserrat">
                         <i class="fas fa-clock"></i> {{$post->created_at}} |
-                        <a href=""><i class="fas fa-stream"></i> {{$post->category->name}}</a> |
+                        <a href="{{route('posts.categoryPosts', ['category' => $post->category->id, 'categoryname'=>$post->category->name])}}"><i class="fas fa-stream"></i> {{$post->category->name}}</a> |
                         <a href=""><i class="fas fa-user"></i> {{$post->user->name}}</a>
                     </small>
                 </p>
@@ -29,7 +29,7 @@
                 <div class="card-body">
                     @foreach($tags as $tag)
                         <span style="display: inline-block; margin-right: 5px;">
-                            <a  class='text-primary card tag-card b-none pad-small c-pointer shadowed b-radius-1000 card-body' href="">
+                            <a href="{{route('posts.tagPosts', ['tag'=>$tag->id, 'tagname' =>$tag->name])}}" class='text-primary card tag-card b-none pad-small c-pointer shadowed b-radius-1000 card-body' href="">
                                 <small style="font-size:.7em" class="ml-1 text-center mb-0 text-primary tag-name">
                                     <b>{{$tag->name}}</b>
                                 </small>
@@ -56,8 +56,8 @@
                                 @csrf
                                 @method('DELETE')
                                 <div class="btn-group">
-                                    <button type='button' data-toggle="modal" data-target="#comment_{{$comment->id}}" style='color:white' class="btn btn-success"><i class="fas fa-pen"></i></button>
-                                    <button type='submit' class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    <button type='button' data-toggle="modal" data-target="#comment_{{$comment->id}}" style='color:white' class="btn btn-sm btn-success"><i class="fas fa-pen"></i></button>
+                                    <button type='submit' class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                 </div>
                             </form>                            
                             <!-- Modal -->
@@ -92,8 +92,14 @@
                     @if(Auth::check())
                         <form action="{{route('comments.store', ['post_id'=> $post->id])}}" method='POST' class="form comment_form">
                             @csrf
-                            <input type="text" name="comment_body" class="form-control form-control-sm mb-2">
-                            <button class="btn btn-sm btn-primary">Comment</button>
+                            <div class="row">
+                                <div class="col-7 pr-0">
+                                    <input type="text" name="comment_body" class="form-control form-control-sm mb-2">
+                                </div>
+                                <div class="col-5 pl-1">
+                                    <button class="btn btn-sm btn-primary">Comment</button>
+                                </div>
+                            </div>
                         </form>
                     @endif
 

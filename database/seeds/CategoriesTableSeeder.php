@@ -11,6 +11,10 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Category', 5)->create();
+        DB::table('categories')->insert(['name'=>'web development']);
+        DB::table('categories')->insert(['name'=>'android app development']);
+        DB::table('categories')->insert(['name'=>'desktop app development']);
+        DB::table('categories')->insert(['name'=>'freelancing']);
+        
     }
 }
