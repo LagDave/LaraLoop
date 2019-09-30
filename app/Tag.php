@@ -12,6 +12,10 @@ class Tag extends Model
     public function posts(){
         return $this->belongsToMany('App\Post');
     }
+    public function forumPosts(){
+        return $this->belongsToMany('App\ForumPost');
+    }
+
     public function setNameAttribute($value){
         $this->attributes['name'] = strtolower($value);
     }

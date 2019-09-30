@@ -1,6 +1,6 @@
 <div class="card b-none shadow">
     <div class="card-header">
-        <h5 class='text-primary'>{!!$header_name ??  'Post Feed'!!}</h5>
+        <h5 class='text-primary'>{!!$header_name ??  "Authors' Blogs"!!}</h5>
     </div>
     <div class="card-body b-none shadow-xs">
         <div class="row ">

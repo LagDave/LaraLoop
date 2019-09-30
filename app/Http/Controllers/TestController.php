@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\ForumPost;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
     public function home(){
-        $str = 'wenchand - arsehole shit- madapaer';
+        return ForumPost::find(6)->tags;
     }
 }

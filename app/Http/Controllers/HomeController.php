@@ -22,6 +22,6 @@ class HomeController extends Controller
         $categories = Category::orderBy('id', 'asc')->get();
         $tags = Tag::orderBy('id', 'asc')->get();
         $posts = Post::orderBy('id', 'desc')->get();
-        return view('home',compact('user_recent_posts', 'categories', 'tags', 'posts'));
+        return view('home',compact('categories', 'tags', 'posts'));
     }
 }

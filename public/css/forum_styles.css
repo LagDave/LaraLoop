@@ -1,0 +1,19 @@
+.vote-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+.vote-container .vote{
+	font-size: 1.8em;
+	padding:5px 0;
+}
+a.forum_post_header{
+	color:black !important;
+}
+a:hover{
+	text-decoration: none;
+}
+pre{
+	font-family: ;
+}
