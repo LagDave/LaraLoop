@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $categories = Category::orderBy('id', 'asc')->get();
         $tags = Tag::orderBy('id', 'asc')->get();
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         return view('home',compact('categories', 'tags', 'posts'));
     }
 }

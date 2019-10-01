@@ -72,3 +72,6 @@
         <br>
     @endif
 @endforeach
+<p class="text-center">
+<small class='text-muted'><i><a href="/login">Sign in</a> to create and participate in Posts</i></small>
+</p>

@@ -30,7 +30,10 @@
     {{-- Font Families --}}
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"><body>
-<div id="app">
+</head>
+<body class='d-flex flex-column'>
+
+<div id="page-content">
 
 
 {{-- This 'if' codeblock will determine what navigation bar will be displayed --}}
@@ -63,4 +66,3 @@
     </div>
 @endif
 <br>
-<div class="container-fluid">

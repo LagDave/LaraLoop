@@ -68,7 +68,7 @@ class PostsController extends Controller
     public function results(Request $request){
         $query = trim(preg_replace('/\s+/',' ', Input::get('query')));
         $queries_list = explode(" ", $query);
-        $posts = Post::where('title', 'like', '%'.$query.'%')->orderBy('id', 'DESC')->get();
+        $posts = Post::where('title', 'like', '%'.$query.'%')->orderBy('id', 'DESC')->paginate(3);
         
         $categories = Category::all();
         $tags = Tag::all();

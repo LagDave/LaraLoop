@@ -48,8 +48,7 @@ class ForumPostsController extends Controller
         foreach($new_tags_ids as $tag){
             $post->tags()->attach($tag);
         }
-        return $post;
-
+        return redirect(url('forum.index'));
 
         // redirect back to route(forum.index)
 
